@@ -1,0 +1,65 @@
+# Ignore virtual environment
+venv/
+
+# Ignore packages
+Lib/site-packages/
+
+
+# Ignore Django-specific files
+*.pyc
+*.pyo
+__pycache__
+
+# Ignore local settings
+local_settings.py
+
+# Ignore database files
+db.sqlite3
+
+# Ignore media files (uploaded user content)
+media/
+
+# Ignore static files (collectstatic)
+static/
+
+# Ignore logs and temporary files
+*.log
+*.swp
+*.swo
+*.~
+not.txt
+
+# Ignore environment variables file
+.env
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore compiled Python bytecode
+*.pyc
+
+# Ignore macOS system files
+.DS_Store
+
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.vercel
