@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-i9mct6m-@gaxtmcb5ci-^r3mgr3+c0^%69nox4r8a16#4_ee@q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".vercel.app", ".now.sh"]
+ALLOWED_HOSTS = [".vercel.app", ".now.sh", "localhost:3000", "localhost"]
 
 
 # Application definition
@@ -95,10 +95,10 @@ WSGI_APPLICATION = 'CoinStackManager.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': BASE_DIR / 'db.sqlite3',
-    #}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.inimumLengthValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -139,11 +139,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Define the base directory for static files (not including app-specific static directories)
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Define the directory where Django will collect static files for deployment
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
