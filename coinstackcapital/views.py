@@ -3,17 +3,17 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from django.contrib.auth import get_user_model
 
-from .utility import signUserUp, send_verification_email_code, check_for_session_id, log_request,signUserIn,sameSiteChecker
+from .utility import signUserUp, send_verification_email_code, signUserIn,sameSiteChecker
 from .utility import fetch_client_detail
 
 #For uuid generation
 import uuid
 
-# Create your views here.
-# views.py
 from django.utils import timezone #Fetches the current datetime
 from .models import EmailMisc, MyUser, RateLimit
 
@@ -114,6 +114,21 @@ def client_detail(request):
     else:
         return JsonResponse({'message': 'Unauthorized access'}, status=403)
     
+@csrf_exempt
+def refresh_token(request):
+    if request.method == 'POST':
+        refresh_token = request.POST.get('refresh_token')
+        if refresh_token:
+            try:
+                refresh_token = RefreshToken(refresh_token)
+                access_token = str(refresh_token.access_token)
+                return JsonResponse({'access_token': access_token}, status=200)
+            except Exception as e:
+                return JsonResponse({'error': 'Invalid refresh token'}, status=400)
+        else:
+            return JsonResponse({'error': 'Refresh token not provided'}, status=400)
+    else:
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 @api_view(['GET','POST']) #A post should be used
 def sendEmailVerificationRequest(request):

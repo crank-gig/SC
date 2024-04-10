@@ -10,5 +10,5 @@ urlpatterns = [
     path('authenticate-email/', views.authenticate_email, name='authenticate_email'),
     path('signin/', views.signin, name='signin'),
     path('client-detail/', views.client_detail, name='client_detail'),
-    # Add other URL patterns as needed
+    path('refresh-token/', views.refresh_token, name='refresh_token'),
 ]
